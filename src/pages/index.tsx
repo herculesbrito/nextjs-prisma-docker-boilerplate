@@ -1,13 +1,13 @@
-import styles from "./index.module.css";
-import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import styles from './index.module.css'
+import { type NextPage } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
-import { api } from "~/utils/api";
+import { api } from '~/utils/api'
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const hello = api.example.hello.useQuery({ text: 'from tRPC' })
 
   return (
     <>
@@ -47,25 +47,25 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.showcaseContainer}>
             <p className={styles.showcaseText}>
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+              {hello.data ? hello.data.greeting : 'Loading tRPC query...'}
             </p>
             <AuthShowcase />
           </div>
         </div>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
 
 const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
+  const { data: sessionData } = useSession()
 
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
+    { enabled: sessionData?.user !== undefined }
+  )
 
   return (
     <div className={styles.authContainer}>
@@ -77,8 +77,8 @@ const AuthShowcase: React.FC = () => {
         className={styles.loginButton}
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
-        {sessionData ? "Sign out" : "Sign in"}
+        {sessionData ? 'Sign out' : 'Sign in'}
       </button>
     </div>
-  );
-};
+  )
+}
