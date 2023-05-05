@@ -1,28 +1,31 @@
-# Create T3 App
+# Boilerplate project
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+- Uses [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+- Uses Docker & Docker Compose to run
 
-## What's next? How do I make an app with this?
+## How to run
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- Make sure Docker & Docker Compose are installed
+- Run `docker-compose up -d`
+- Run migrations: `docker-compose run app yarn prisma:migrate:dev`
+- The app should be up and running at http://localhost:3000
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Command Line utility
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+You can use the command line utility to issue commands that will run on containers.
 
-## Learn More
+The utility is setup at `misc/dev-tools/bin/pf-dev`. To make it easier to use it, you can add the `misc/dev-tools/bin` folder to your path. Just put this on `.bash_profile` or `.bashrc`:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+```bash
+export PF_DIR="$HOME/path/to/project" # You should use the path the project is located at your machine
+export PATH="$PF_DIR/misc/dev-tools/bin:$PATH"
+```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+Now you can use like this:
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+```bash
+pf-dev start
+pf-dev stop
+```
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+You can check `pf-dev help` and see how to use it
